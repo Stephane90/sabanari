@@ -1,0 +1,40 @@
+[
+    {
+        "id": 1,
+        "title": "Flowers",
+        "authors": [
+            "Thaos", "Maud"
+        ],
+        "pages": 240,
+        "publisher": "Random House Digital, Inc.",
+        "publishedDate": "2005-11-15",
+        "averageRating": 3.9,
+        "images": [
+            {
+                "smallThumbnail": "https://books.google.com/books?id=zyTCAlFPjgYC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+                "thumbnail": "https://books.google.com/books?id=zyTCAlFPjgYC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+                "small": "https://books.google.com/books?id=zyTCAlFPjgYC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
+                "medium": "https://books.google.com/books?id=zyTCAlFPjgYC&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api"
+            }      
+        ]
+    },
+    {
+        "id": 2,
+        "title": "Water",
+        "authors": [
+            "Niku", "Ahronn"
+        ],
+        "pages": 600,
+        "publisher": "Kodansha",
+        "publishedDate": "2015-11-15",
+        "averageRating": 4.5,
+        "images": [
+            {
+                "smallThumbnail": "https://books.google.com/books?id=zyTCAlFPjgYC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+                "thumbnail": "https://books.google.com/books?id=zyTCAlFPjgYC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+                "small": "https://books.google.com/books?id=zyTCAlFPjgYC&printsec=frontcover&img=1&zoom=2&edge=curl&source=gbs_api",
+                "medium": "https://books.google.com/books?id=zyTCAlFPjgYC&printsec=frontcover&img=1&zoom=3&edge=curl&source=gbs_api"
+            }      
+        ]
+    }
+]

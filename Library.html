@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <style>
+        .card {
+          box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+          transition: 0.3s;
+          width: 5%;
+          padding-right: 1%;
+          margin-bottom: 10px;
+          border-radius: 5px;
+        }
+        
+        .card:hover {
+          box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+        
+        img {
+          border-radius: 5px 5px 0 0;
+        }
+        
+        .container {
+          padding: 2px 16px;
+        }
+
+        #grid-container {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          width: 100%;
+        }
+        /* .img-info {
+        position: relative;
+        }
+
+        .img-info .info {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: white;
+            padding: 10px;
+        }
+
+        .img-info:hover .info {
+            display: block;
+        } */
+        .myTooltip {
+            visibility: hidden;
+            position: absolute;
+            z-index: 999;
+            background-color: black;
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
+            top: 10%; 
+            margin-left: 6.5%;
+            transform: translateY(-50%);
+        }
+
+        .myTooltip:before {
+            content: "";
+            position: absolute;
+            top: calc(50% - 5px);
+            left: -10px;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+            border-right: 10px solid black;
+        }
+        .card:hover .myTooltip {
+            visibility: visible;
+        }
+
+        body {
+			background-image: url("images/shelve.jpg");
+			background-repeat: repeat;
+		}
+    </style>
+</head>
+<body>
+<title>Sabanari</title>
+
+<div id="grid-container">
+    
+</div>
+
+<!-- <div class="card">
+    <img src="images/menu-item.jpg" alt="Avatar" style="width:100%">
+    <div class="container">
+      <h4><b>John Doe　＿φ(￣ー￣ )</b></h4>
+      <p>Architect & Engineer</p>
+    </div>
+  </div> -->
+</body> 
+
+<script>
+
+
+fetch('Books/mock-book.json')
+  .then(response => response.json())
+  .then(data => {
+    let gridContainer = document.getElementById('grid-container');
+    for (let item of data) {
+      let gridItem = document.createElement('div');
+      let imgItem = document.createElement('img');
+      let divItem = document.createElement('div');
+      
+      let myTooltipDiv = document.createElement('div');
+      myTooltipDiv.classList.add('myTooltip');
+      myTooltipDiv.classList.add('tooltip-text');
+      myTooltipDiv.innerHTML = "Je vais poser un lapin - Niku";
+      
+      
+
+    //   imgItem.onmouseover = function() {
+    //     myTooltip.style.display = "block";
+    //     }
+
+    //     imgItem.onmouseout = function() {
+    //         myTooltip.style.display = "none";
+    //     }
+      gridItem.classList.add('card');
+      divItem.classList.add('container');
+      imgItem.src = item.images[0].smallThumbnail;
+      imgItem.addEventListener("click",function openPopup() {
+    var popupWindow = window.open("", "PopupWindow", "width=400,height=300");
+    popupWindow.document.write("<h1>Bienvenue sur notre site Web !</h1>");
+    popupWindow.document.write("<p>Ceci est un exemple de fenêtre pop-up en JavaScript.</p>");
+});
+      
+
+      imgItem.alt = item.title;
+      imgItem.style.width = "100%";
+      
+      let Title = document.createElement('h4');
+      let b = document.createElement('b');
+      //let Author = document.createElement('span');
+      b.textContent = "Titre : " + item.title +"\n";
+      //h4.appendChild('Title');
+      Title.appendChild(b);
+      divItem.appendChild(Title);
+
+      let page = document.createElement('h5');
+      let pageText = document.createElement('b');
+      page.textContent = "Page : " + item.pages + "\n";
+      page.appendChild(pageText);
+      divItem.appendChild(page);
+
+      let averageRating = document.createElement('h5');
+      let averageRatingText = document.createElement("b");
+      averageRatingText.textContent = "Average rating : " + item.averageRating;
+      averageRating.appendChild(averageRatingText);
+      divItem.appendChild(averageRating);
+
+      let releaseDate = document.createElement('h5');
+      let releaseDateText = document.createElement("b");
+      releaseDateText.textContent = "Release Date : " + item.publishedDate;
+      releaseDate.appendChild(releaseDateText);
+      divItem.appendChild(releaseDate);
+    
+      myTooltipDiv.innerHTML += divItem.innerHTML;
+
+      let p = document.createElement('p');
+      p.textContent = item.name;
+      divItem.appendChild(p);
+      gridItem.appendChild(myTooltipDiv);
+      gridItem.appendChild(imgItem);
+      //gridItem.appendChild(divItem);
+      gridContainer.appendChild(gridItem);
+    }
+  });
+</script>
+<a href="Books/bookList.html">To Search Books </a>
+</html>
+
+
+
