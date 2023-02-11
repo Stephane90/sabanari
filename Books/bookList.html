@@ -6,19 +6,15 @@
     <title>Sabanari</title>
   </head>
   <body>
-    <script>
-        const pageCount = 0
-        const currentPage = 0
-        const paginationLimit = 10
-    </script>
+
     <form>
         <label for="fname">Book's title:</label><br>
         <input type="text" id="search" value="やはり"><br><br>
-        <button onclick="searchBooks(event, pageCount, currentPage, paginationLimit)">Search</button>
+        <button onclick="searchBooks(event, 0, 0, 10)">Search</button>
     </form> 
     <div id="display-books">
     </div>
-    <button onclick="searchBooks(event, pageCount, currentPage, paginationLimit)">next</button>
+    <button onclick="next()">next</button>
     <a href="../Library.html">To Library</a>
   </body>
 </html>
