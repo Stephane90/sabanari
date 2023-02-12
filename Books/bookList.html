@@ -3,18 +3,27 @@
   <head>
     <meta charset="UTF-8">
     <script src="./booksList.js"></script>
+    <link href="bookList.css" rel="stylesheet">
     <title>Sabanari</title>
   </head>
-  <body>
+  <body onload="searchBooks(event, 0, 10, true)">
 
     <form>
         <label for="fname">Book's title:</label><br>
         <input type="text" id="search" value="やはり"><br><br>
-        <button onclick="searchBooks(event, 0, 0, 10)">Search</button>
+        <button onclick="searchBooks(event, 0, 10, true)">Search</button>
+        <button onclick="prev()">previous</button>
+        <button onclick="next()">next</button>
     </form> 
     <div id="display-books">
+      <ul id="book-list">
+
+      </ul>
     </div>
-    <button onclick="next()">next</button>
-    <a href="../Library.html">To Library</a>
+    <form>
+      <button onclick="prev()">previous</button>
+      <button onclick="next()">next</button>
+    </form>
+    <a href="../Library.html" class="to-library">To Library</a>
   </body>
 </html>

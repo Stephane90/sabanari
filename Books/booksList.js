@@ -1,38 +1,54 @@
-var pageCount = 0
+var totalResults = 0
 var currentPage = 0
 var paginationLimit = 10
+var books = []
 
-function searchBooks(event, pageCount, currentPage, paginationLimit){
+function searchBooks(event, currentItems, paginationLimit, first){
     event.preventDefault()
-    console.log(pageCount)
-    console.log(currentPage)
-    console.log(paginationLimit)
     var input = document.getElementById('search').value;
     console.log("test")
-    let books = []
-    fetch(`https://www.googleapis.com/books/v1/volumes?q=${input}&maxResults=${paginationLimit}&startIndex=${currentPage}`)
+    currentBooks =[]
+    currentBookString = ""
+    fetch(`https://www.googleapis.com/books/v1/volumes?q=${input}&maxResults=${paginationLimit}&startIndex=${currentItems}`)
         .then(response => response.json())
         .then(data => { data.items.map((item) => {
             const volume = item.volumeInfo
-            console.log(item.volumeInfo)
+            if(first){
+                totalResults = data.totalItems 
+                currentPage = 0
+            }
+                 
+            // number of pages : (data.totalItems+paginationLimit -1) / paginationLimit  
+            //console.log(item.volumeInfo)
             const book = {
                 title: volume.title,
-                authors: volume.authors===undefined ? "No authors found":volume.authors,
+                authors: volume.authors===undefined ? "No authors found.":volume.authors,
                 language: volume.language.toUpperCase(),
-                pages: volume.pageCount,
+                pages: volume.pageCount ===undefined || volume.pageCount ===0 ? "Unknown.":volume.pageCount,
                 images: volume.imageLinks,
-                description: volume.description
+                description: volume.description === undefined ? "No Description.":volume.description
 
             }
-            books.push(book)
-            document.getElementById("display-books").innerHTML += "<div> title : "+book.title+
+
+            currentBookString += "<li><div> title : "+book.title+
+            "</div><div> authors :"+book.authors+
+            "</div><div> language: "+book.language+
+            "</div><div> number of pages :"+book.pages+
+            "</div><div>"+book.description+"<br/>"+
+            (book.images && book.images.smallThumbnail ? "<img src=\""+book.images.smallThumbnail+"\"/>" : "") +
+            "</li><br/><br/>"
+            /*
+            currentBooks.push("<li><div> title : "+book.title+
             "</div><div> authors :"+book.authors+
             "</div><div> language: "+book.language+
             "</div><div> number of pages :"+book.pages+
             "</div><div> description :"+book.description+
             (book.images && book.images.smallThumbnail ? "<img src=\""+book.images.smallThumbnail+"\"/>" : "") +
-            "<br/><br/>"
-            return book
+            "</li><br/><br/>")
+            */
+            document.getElementById("display-books").innerHTML =  currentBookString
+                
+            return currentBooks
         })
             
         //console.log(books)
@@ -41,16 +57,23 @@ function searchBooks(event, pageCount, currentPage, paginationLimit){
     .catch(error => {
         console.error(error);
     });
-    currentPage += 10
-    console.log(pageCount)
-    console.log(currentPage)
-    console.log(paginationLimit)
-
     
+    console.log("total results :" + totalResults)
+    console.log("Current :" + currentItems)
+    console.log("Limit : " + paginationLimit)
+
+    return currentBooks
 }
 
 function next() {
-    currentPage += paginationLimit
-    searchBooks(event, pageCount, currentPage, paginationLimit)
+    console.log(totalResults)
+    if(currentPage<totalResults)
+        currentPage += paginationLimit
+    searchBooks(event, currentPage, paginationLimit, false)
 }
 
+function prev() {
+    if(currentPage - paginationLimit >= 0)
+    currentPage -= paginationLimit
+    searchBooks(event, currentPage, paginationLimit, false)
+}

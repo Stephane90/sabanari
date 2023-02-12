@@ -1,0 +1,92 @@
+body {
+    background-color: #1a1a1a;
+    color: #e6e6e6;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+  }
+  
+  li {
+    border: 1px solid #666;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 10px;
+    list-style: none;
+  }
+  
+  li div:first-of-type {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  li div:not(:first-of-type) {
+    margin-bottom: 3px;
+  }
+  
+  li div:last-of-type {
+    margin-top: 10px;
+  }
+  
+  li img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+  }
+  
+  br {
+    clear: both;
+  }
+  form {
+    background-color: #1c1c1c;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  label {
+    color: #fff;
+    font-size: 18px;
+    margin-bottom: 10px;
+    display: block;
+  }
+  
+  input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    background-color: #333;
+    color: #fff;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  button {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 10px;
+  }
+  
+  button:hover {
+    background-color: #3e8e41;
+  }
+
+  .to-library {
+    display: inline-block;
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .to-library:hover {
+    background-color: #222;
+  }
+  
+  
